@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Research;
+use App\Portfolio;
 
 use Illuminate\Http\Request;
 
@@ -40,6 +41,7 @@ class HomeController extends Controller
 
     public function portfolio()
     {
-        return view('portfolio');
+        $portfolio = Portfolio::all();
+        return view('portfolio', compact('portfolio'));
     }
 }

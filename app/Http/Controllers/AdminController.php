@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Portfolio;
 use App\Research;
 
 use Illuminate\Http\Request;
@@ -25,7 +27,8 @@ class AdminController extends Controller
     public function index()
     {
         $researches = Research::all();
-        return view('admin.admin_home', compact('researches'));
+        $portfolio = Portfolio::all();
+        return view('admin.admin_home', compact('researches', 'portfolio'));
     }
 
 }

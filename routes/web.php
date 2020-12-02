@@ -26,3 +26,7 @@ Route::get('/read_research/{id}', 'ResearchController@show')->name('show_researc
 Route::get('/edit_research/{id}', 'ResearchController@edit')->name('edit_research');
 Route::get('/delete_research/{id}', 'ResearchController@destroy')->name('delete_research');
 Route::post('/update_research/{id}', 'ResearchController@update')->name('update_research');
+// portfolio routes
+Route::post('/portfolio', 'PortfolioController@store')->name('store_portfolio');
+Route::get('/delete_portfolio/{id}', 'PortfolioController@destroy')->name('delete_portfolio');
+Route::post('/update_portfolio/{id}', 'PortfolioController@update')->name('update_portfolio');

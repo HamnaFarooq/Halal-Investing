@@ -38,46 +38,72 @@ Our Portfolio
 
         @guest
         <!-- dummy data -->
-    <h5 class="text-center">Please login to view</h5>
-    <div class="table-responsive blur">
-    <table class="table table-hover text-center">
-            <thead>
-                <tr class="bg-dark text-light">
-                    <th scope="col">Sr. no.</th>
-                    <th scope="col">Company name</th>
-                    <th scope="col">Sector</th>
-                    <th scope="col">Investment</th>
-                    <th scope="col">Date</th>
-                </tr>
-            </thead>
-            <tbody class="border">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Dummy</td>
-                    <td>Oil</td>
-                    <td> 000 </td>
-                    <td>Oct 2020</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Dummy</td>
-                    <td>Electronics</td>
-                    <td> 000 </td>
-                    <td>Feb 2020</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Dummy</td>
-                    <td>Pharma</td>
-                    <td> 000 </td>
-                    <td>Aug 2020</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        <h5 class="text-center">Please login to view</h5>
+        <div class="table-responsive blur">
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr class="bg-dark text-light">
+                        <th scope="col">Sr. no.</th>
+                        <th scope="col">Company name</th>
+                        <th scope="col">Sector</th>
+                        <th scope="col">Investment</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody class="border">
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Dummy</td>
+                        <td>Oil</td>
+                        <td> 000 </td>
+                        <td>Oct 2020</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Dummy</td>
+                        <td>Electronics</td>
+                        <td> 000 </td>
+                        <td>Feb 2020</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Dummy</td>
+                        <td>Pharma</td>
+                        <td> 000 </td>
+                        <td>Aug 2020</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         @else
         <!-- real data here -->
+        <div class="table-responsive">
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr class="bg-dark text-light">
+                        <th scope="col">Sr. no.</th>
+                        <th scope="col">Company name</th>
+                        <th scope="col">Sector</th>
+                        <th scope="col">Action</th>
+                        <th scope="col">Share Rate($)</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody class="border">
+                @foreach ($portfolio as $share)
+                    <tr>
+                        <th scope="row"> {{ $loop->iteration }} </th>
+                        <td> {{ $share->company_name}} </td>
+                        <td> {{ $share->sector}} </td>
+                        <td> {{ $share->action}} </td>
+                        <td> {{ $share->share_price}} </td>
+                        <td> {{ $share->updated_at}} </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
         @endguest
 
     </div>

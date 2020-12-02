@@ -1,10 +1,10 @@
-<div class="modal fade" id="add_research" tabindex="-1" role="dialog" aria-labelledby="add_research" aria-hidden="true">
+<div class="modal fade" id="add_to_portfolio_form" tabindex="-1" role="dialog" aria-labelledby="add_to_portfolio_form" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
 
         <div class="modal-content">
             <div class="modal-header">
 
-                <h5 class="modal-title" id="exampleModalLongTitle">Add Research</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Add to Portfolio</h5>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -13,7 +13,7 @@
 
             <div class="modal-body">
                 <!-- form -->
-                <form action="/research" method="POST" autocomplete="off">
+                <form action="/portfolio" method="POST" autocomplete="off">
                     @csrf
 
                     <div class="form-group">
@@ -27,17 +27,16 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="type">Type:</label>
-                        <select name="type" class="form-control" required>
-                            <option value="free">Free</option>
-                            <option value="paid">Paid</option>
-                            <option value="private">Private</option>
+                        <label for="action">Action:</label>
+                        <select name="action" class="form-control" required>
+                            <option value="buy">buy</option>
+                            <option value="sell">sell</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="document">Document text:</label>
-                        <textarea class="form-control" name="document" placeholder="Enter text" required> </textarea>
+                        <label for="share_price">Share Price ($):</label>
+                        <input type="float" class="form-control" name="share_price" placeholder="Enter price" required>
                     </div>
 
                     @if($errors->any())
