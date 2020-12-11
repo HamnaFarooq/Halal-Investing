@@ -25,7 +25,7 @@ class researchController extends Controller
             'document' => 'required|max:4294967290',
         ])->validate();
 
-        Research::create($request->all());
+        $research = Research::create($request->all());
         return view('research.edit', compact('research'));
     }
 

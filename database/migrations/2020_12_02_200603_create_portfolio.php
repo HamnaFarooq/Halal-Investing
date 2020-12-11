@@ -16,9 +16,10 @@ class CreatePortfolio extends Migration
         Schema::create('portfolio', function (Blueprint $table) {
             $table->id();
             $table->string('company_name');
-            $table->string('sector');
+            $table->string('share_percentage');
             $table->string('action');
             $table->double('share_price');
+            $table->string('date');
             $table->timestamps();
         });
     }

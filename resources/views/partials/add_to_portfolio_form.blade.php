@@ -22,21 +22,36 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="sector">Sector:</label>
-                        <input type="text" class="form-control" name="sector" placeholder="Enter sector" required>
+                        <label for="share_percentage">Share:</label>
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <input type="float" class="form-control" name="share_percentage" placeholder="Enter share percentage" required pattern="([0-9]|[1-9][0-9]|100)" minlength="1" maxlength="3">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="action">Action:</label>
                         <select name="action" class="form-control" required>
-                            <option value="buy">buy</option>
+                            <option value="partial_buy">Partial buy</option>
+                            <option value="buy">Buy</option>
+                            <option value="partial_sell">Partial sell</option>
                             <option value="sell">sell</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="share_price">Share Price ($):</label>
-                        <input type="float" class="form-control" name="share_price" placeholder="Enter price" required>
+                        <input type="float" class="form-control" name="share_price" placeholder="Enter price">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="date" class="form-control" name="date" placeholder="Enter date" required>
+                        <small class="form-text text-muted">if no calander appears on your browser, type in Format: YYYY-MM-DD</small>
                     </div>
 
                     @if($errors->any())

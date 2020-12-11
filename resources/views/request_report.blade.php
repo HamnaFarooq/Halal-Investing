@@ -12,25 +12,52 @@ Request Company Analysis
     </div>
 </div>
 
-<div class="container text-center text-dark py-5">
+<div class="container text-left text-dark py-5">
     <h3>Request Company Analysis</h3>
-    <p>What makes our report different from publicly available research report
-        No recommendations will be provided. Only as-is analysis should be expected
-        We will not analyze companies whose core business is based on interest (ex: banks or NBFC or financial
-        institutes) nor we are expert in this.
-        Report will be extensive and revisons will not be entertained
-        Report will contain analysis of 10 years of annual reports, analysis of business verticals, fund flow analysis,
-        positive points & negative aspects to help you make investment decision.
-        The decision to invest or avoid will be solely yours.
-        No money will be refunded.
-        50% during the order, 50% upon completion of report.
-        We have backlog and working on current report committments and report takes atleast 30 days to research, compile
-        and deliver.
-        Since we are working professionals and have a day job.
-        You will be entitled to 2 clarifications on the submitted report. All the clarifications should be submitted via
-        registered email within 7 days of report submission.
-        Please use it wisely. We will get back to you with a response within 3 working days.
-        What does report contain?</p>
+    <p>
+        The report contains exclusive insights into the industry, business, financial and management. Our reports contain <b> Business Overview, Financials & Management sections </b>. 
+        Business Overview section provides information about company’s products & services, technology, market share including business insights. Financial Section provides Profit & Loss (PnL) statement analysis of last 10 years including revenue, operating profit & net profit. We also analyze other financial ratios that reflect company’s financial stability. Similarly, Management section contains information about company’s promoters, financial shenanigans, frauds or penalties if any. 
+        <br>
+        <br>
+        As part of this service, <b> we will perform the valuation of company requested </b>. You will get the receive calculation/rationale in the report. This will not be part of reports available in ‘Company Analysis Report’ service. Since we are working professional with a day-job, we request you to give us enough time for thorough research & analysis.
+        <br>
+        <br>
+        We have good order backlog and working on current commitments. It will take minimum 30 days to research, compile and submit the report. In case where we are not able to get the clear picture about any company, we recommend investors to contact investor relations team to get more information. 
+        <br>
+        <br>
+        Before using this service, we advise you to visit  ‘COMPANY ANALYSIS REPORTS’ and check if the report (for the company you are looking) is already available.
+        This way you will save you hard-earned money.
+        <br><br>
+        <b>The process:</b>
+        <ol>
+            <li>
+        	    Fill & submit the form by providing details such as company name, sector and expected delivery date
+            </li>
+            <li>
+            We will review the request within 2 days
+            </li>
+            <li>
+            Accept or decline the work
+            </li>
+            <li>
+            If accepted, we will provide you revised delivery date (depending on order book)
+            </li>
+            <li>
+            If you are fine with revised delivery date, make 50% payment upfront
+            </li>
+            <li>
+            Acknowledgement will be sent to your registered email
+            </li>
+            <li>
+            We will notify you once the report is ready.
+            </li>
+            <li>
+            Make the balance payment and report will be delivered to your registered email
+            </li>
+        </ol>
+        <br>
+        You will be entitled for 2 clarifications on the submitted report. All the clarifications should be submitted via registered email within 7 days of report submission. We will get back to you within 3 working days.
+    </p>
 </div>
 
 <div class="request_report">
@@ -53,7 +80,7 @@ Request Company Analysis
                         <th scope="col">Company name</th>
                         <th scope="col">Sector</th>
                         <th scope="col">Type</th>
-                        <th scope="col">Download PDF</th>
+                        <th scope="col">Open</th>
                     </tr>
                 </thead>
                 <tbody class="border">

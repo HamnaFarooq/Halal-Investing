@@ -94,7 +94,7 @@ Admin
                                 <tr class="bg-dark text-light">
                                     <th scope="col">Sr. no.</th>
                                     <th scope="col">Company name</th>
-                                    <th scope="col">Sector</th>
+                                    <th scope="col">Shares</th>
                                     <th scope="col">Action</th>
                                     <th scope="col">Share Price($)</th>
                                     <th scope="col">Date</th>
@@ -108,11 +108,11 @@ Admin
                                 <tr>
                                     <th scope="row"> {{ $loop->iteration }} </th>
                                     <td> {{ $share->company_name}} </td>
-                                    <td> {{ $share->sector}} </td>
+                                    <td> {{ $share->share_percentage}} % </td>
                                     <td> {{ $share->action}} </td>
                                     <td> {{ $share->share_price}} </td>
-                                    <td> {{ $share->updated_at}} </td>
-                                    <td> <button class="btn btn-primary" data-toggle="modal" data-target="#edit_portfolio_form"> Edit </button> </td>
+                                    <td> {{ $share->date}} </td>
+                                    <td> <button class="btn btn-primary" data-toggle="modal" data-target="#edit_portfolio{{$share->id}}_form"> Edit </button> </td>
                                     <td> <a href="/delete_portfolio/{{$share->id}}"> <button class="btn btn-primary"> Delete </button> </a> </td>
                                 </tr>
                                 @endforeach

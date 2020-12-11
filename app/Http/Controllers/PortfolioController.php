@@ -20,9 +20,10 @@ class portfolioController extends Controller
     {
         Validator::make($request->all(), [
             'company_name' => 'required|max:255',
-            'sector' => 'required|max:255',
+            'share_percentage' => 'required|numeric|max:100|min:1',
             'action' => 'required|max:255',
-            'share_price' => 'required',
+            'share_price' => 'required|numeric',
+            'date' => 'required|max:255',
         ])->validate();
 
         portfolio::create($request->all());
@@ -57,9 +58,10 @@ class portfolioController extends Controller
 
         Validator::make($request->all(), [
             'company_name' => 'required|max:255',
-            'sector' => 'required|max:255',
+            'share_percentage' => 'required|numeric|max:255',
             'action' => 'required|max:255',
-            'share_price' => 'required',
+            'share_price' => 'required|numeric',
+            'date' => 'required|max:255',
         ])->validate();
         
         $updatedportfolio->update($request->all());
