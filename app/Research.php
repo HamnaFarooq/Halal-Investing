@@ -10,4 +10,9 @@ class Research extends Model
         'company_name', 'sector', 'type', 'document',
     ];
 
+    public function images()
+    {
+        return $this->hasMany('App\Images');
+    }
+
 }

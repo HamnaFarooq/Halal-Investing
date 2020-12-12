@@ -41,7 +41,7 @@ class researchController extends Controller
 
     public function edit($id)
     {
-        $research = Research::where('id', $id)->first();
+        $research = Research::where('id', $id)->with('images')->first();
         // if ($research && (Auth::user()->user_type == 'admin')) {
         if ($research) {
             return view('Research.edit', compact('research'));

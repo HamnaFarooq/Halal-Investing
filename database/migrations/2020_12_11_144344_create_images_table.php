@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePortfolio extends Migration
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreatePortfolio extends Migration
      */
     public function up()
     {
-        Schema::create('portfolio', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('company_name');
-            $table->string('share_percentage');
-            $table->string('action');
-            $table->double('share_price');
-            $table->string('date');
+            $table->foreignId('research_id')->constrained('research')->onDelete('cascade');
+            $table->string('name')->unique();;
+            $table->binary('image');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreatePortfolio extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('portfolio');
+        Schema::dropIfExists('images');
     }
 }

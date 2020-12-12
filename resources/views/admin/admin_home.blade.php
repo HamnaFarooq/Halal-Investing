@@ -12,13 +12,13 @@ Admin
 <div class="row" style="min-height: calc(100vh - (55.85px * 2));">
     <div class="col-md-2 py-5 bg-primary text-light container">
         <ul class="nav">
-            <li class="nav-item admin-nav">
+            <li class="col nav-item admin-nav">
                 <a class="nav-link active" data-toggle="tab" href="#stats">Statistics</a>
             </li>
-            <li class="nav-item admin-nav">
+            <li class="col nav-item admin-nav">
                 <a class="nav-link" data-toggle="tab" href="#researches">Researches</a>
             </li>
-            <li class="nav-item admin-nav">
+            <li class="col nav-item admin-nav">
                 <a class="nav-link" data-toggle="tab" href="#portfolio">Portfolio</a>
             </li>
         </ul>

@@ -7,9 +7,7 @@
             <h1 class="text-center"> <u> {{ $research->company_name }} </u> </h1>
             <h4 class="text-center"> Sector: {{ $research->sector }} </h4>
             <br>
-            <p> {{ $research->document }} </p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, et omnis. Unde officia aut placeat iusto deleniti odit quod vero commodi repellendus nihil laudantium nobis corrupti, facilis eligendi voluptate optio?</p>
-            images here
+            <p> {!! html_entity_decode($research->document) !!} </p>
         </div>
     </div>
 </div>

@@ -30,3 +30,6 @@ Route::post('/update_research/{id}', 'ResearchController@update')->name('update_
 Route::post('/portfolio', 'PortfolioController@store')->name('store_portfolio');
 Route::get('/delete_portfolio/{id}', 'PortfolioController@destroy')->name('delete_portfolio');
 Route::post('/update_portfolio/{id}', 'PortfolioController@update')->name('update_portfolio');
+// Image routes
+Route::post('/add_image', 'ImagesController@store');
+Route::get('/remove_image/{id}', 'ImagesController@destroy');
