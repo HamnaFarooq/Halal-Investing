@@ -1,3 +1,5 @@
+@include('partials.request_research_form')
+
 @extends('layouts.app')
 
 @section('pagename')
@@ -100,6 +102,31 @@ Request Company Analysis
 
         @else
         <!-- real data here -->
+        <div class="table-responsive">
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr class="bg-dark text-light">
+                        <th scope="col">Sr. no.</th>
+                        <th scope="col">Company name</th>
+                        <th scope="col">Sector</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Open</th>
+                    </tr>
+                </thead>
+                <tbody class="border">
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Dummy</td>
+                        <td>Oil</td>
+                        <td>Sample</td>
+                        <td> <button class="btn btn-primary"> Free </button> </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col text-center">
+                <button class="btn btn-dark" data-toggle="modal" data-target="#request_research_form"> Request Company Analysis </button>
+            </div>
+        </div>
         @endguest
 
     </div>

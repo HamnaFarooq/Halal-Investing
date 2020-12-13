@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRequest extends Migration
+class CreateResearchRequests extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateRequest extends Migration
      */
     public function up()
     {
-        Schema::create('request', function (Blueprint $table) {
+        Schema::create('research_requests', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('company_name');
             $table->string('sector');
             $table->timestamp('expected_by');
-            $table->string('comments')->nullable();
+            $table->longText('request')->nullable();
+            $table->string('status');
+            $table->Text('comments')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ class CreateRequest extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('request');
+        Schema::dropIfExists('research_requests');
     }
 }
