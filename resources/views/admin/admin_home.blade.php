@@ -12,8 +12,11 @@ Admin
     <div class="row" style="min-height: calc(100vh - (55.85px * 2));">
         <div class="col-md-2 py-5 bg-primary text-light container">
             <ul class="nav">
-                <li class="col nav-item admin-nav">
+                <!-- <li class="col nav-item admin-nav">
                     <a class="nav-link active" data-toggle="tab" href="#stats">Statistics</a>
+                </li> -->
+                <li class="col nav-item admin-nav">
+                    <a class="nav-link active" data-toggle="tab" href="#research_requests">Requests</a>
                 </li>
                 <li class="col nav-item admin-nav">
                     <a class="nav-link" data-toggle="tab" href="#researches">Researches</a>
@@ -22,7 +25,7 @@ Admin
                     <a class="nav-link" data-toggle="tab" href="#portfolio">Portfolio</a>
                 </li>
                 <li class="col nav-item admin-nav">
-                    <a class="nav-link" data-toggle="tab" href="#research_requests">Requests</a>
+                    <a class="nav-link" data-toggle="tab" href="#faq">FAQ</a>
                 </li>
             </ul>
         </div>
@@ -30,7 +33,7 @@ Admin
             <div class="container py-5">
                 <div id="myTabContent" class="tab-content">
 
-                    <div class="tab-pane active fade show" id="stats">
+                    <div class="tab-pane fade" id="stats">
                         <h3 class="text-center p-4">Welcome admin!</h3>
                         <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua,
                             retro
@@ -126,8 +129,8 @@ Admin
                         </div>
                     </div>
 
-                    <div class="tab-pane fade" id="research_requests">
-                        <h3 class="text-center pb-4">research Requests</h3>
+                    <div class="tab-pane active fade show" id="research_requests">
+                        <h3 class="text-center pb-4">Research Requests</h3>
 
                         <ul class="nav nav-tabs">
                             <li class="nav-item">
@@ -222,7 +225,7 @@ Admin
                                                     <th scope="col">Company name</th>
                                                     <th scope="col">Sector</th>
                                                     <th scope="col">Expected by</th>
-                                                    <th scope="col">Comments</th>
+                                                    <th scope="col">Reason</th>
                                                     <!-- <th scope="col">Accept</th> -->
                                                     <!-- <th scope="col">Reject</th> -->
                                                     <!-- <th scope="col">Delete</th> -->
@@ -235,7 +238,7 @@ Admin
                                                     <td> {{ $request->company_name }} </td>
                                                     <td> {{ $request->sector }} </td>
                                                     <td> {{ $request->expected_by }} </td>
-                                                    <td> {{ $request->request }} </td>
+                                                    <td> {{ $request->comments }} </td>
                                                     <!-- <td> <a href="/accept_request/{{$request->id}}"> <button class="btn btn-primary"> Accept </button> </a> </td> -->
                                                     <!-- <td> <a href=""> <button class="btn btn-secondary"> Reject </button> </a> </td> -->
                                                     <!-- <td> <a href="/delete_request_research/{{$request->id}}"> <button class="btn btn-danger"> Delete </button> </a> </td> -->
@@ -254,10 +257,8 @@ Admin
                                                     <th scope="col">Company name</th>
                                                     <th scope="col">Sector</th>
                                                     <th scope="col">Expected by</th>
-                                                    <th scope="col">Comments</th>
-                                                    <th scope="col">Accept</th>
-                                                    <th scope="col">Reject</th>
-                                                    <th scope="col">Delete</th>
+                                                    <th scope="col">Delivered on</th>
+                                                    <th scope="col">Delivery</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="border">
@@ -268,9 +269,10 @@ Admin
                                                     <td> {{ $request->sector }} </td>
                                                     <td> {{ $request->expected_by }} </td>
                                                     <td> {{ $request->request }} </td>
-                                                    <td> <a href="/accept_request/{{$request->id}}"> <button class="btn btn-primary"> Accept </button> </a> </td>
-                                                    <td> <a href=""> <button class="btn btn-secondary"> Reject </button> </a> </td>
-                                                    <td> <a href="/delete_request_research/{{$request->id}}"> <button class="btn btn-danger"> Delete </button> </a> </td>
+                                                    <td> {{ $request->last_updated }} </td>
+                                                    <td> 
+                                                        <a href="{{$request->comments}}" target="_blank"> <button class="btn btn-primary"> Delivered Research </button> </a>
+                                                    </td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -311,6 +313,16 @@ Admin
                         </table>
                         </div> -->
 
+                    </div>
+
+                    <div class="tab-pane fade" id="faq">
+                        <h3 class="text-center pb-4">FAQ</h3>
+                        <div class="text-right">
+                            <button class="btn btn-primary my-3" data-toggle="modal" data-target="#add_to_faq_form">
+                                Add to FAQ
+                            </button>
+                        </div>
+                        <!--  -->
                     </div>
 
                 </div>

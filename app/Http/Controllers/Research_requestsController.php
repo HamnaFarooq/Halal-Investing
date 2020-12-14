@@ -15,12 +15,6 @@ class Research_requestsController extends Controller
         $this->middleware('auth');
     }
 
-    public function my_requests()
-    {
-        $research_requests = Research_requests::where('user_id',Auth::id())->get();
-        return view('my_requests', compact('research_requests'));
-    }
-
     public function store(Request $request)
     {
         Validator::make($request->all(), [

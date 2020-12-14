@@ -3,26 +3,11 @@
 namespace App\Http\Controllers;
 use App\Research;
 use App\Portfolio;
-
-use Illuminate\Http\Request;
+use App\Research_requests;
+use App\FAQ;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
         return view('welcome');
@@ -44,4 +29,29 @@ class HomeController extends Controller
         $portfolio = Portfolio::all();
         return view('portfolio', compact('portfolio'));
     }
+
+    public function my_requests()
+    {
+        $research_requests = Research_requests::where('user_id',Auth::id())->get();
+        return view('my_requests', compact('research_requests'));
+    }
+
+    public function faq()
+    {
+        // $portfolio = Portfolio::all();
+        // return view('portfolio', compact('portfolio'));
+        return view('faq');
+    }
+
+    public function about_us()
+    {
+        // $portfolio = Portfolio::all();
+        // return view('portfolio', compact('portfolio'));
+    }
+
+    // public function portfolio()
+    // {
+    //     $portfolio = Portfolio::all();
+    //     return view('portfolio', compact('portfolio'));
+    // }
 }
