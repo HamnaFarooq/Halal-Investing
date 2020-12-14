@@ -5,27 +5,18 @@ namespace App\Http\Controllers;
 use App\Portfolio;
 use App\Research;
 use App\Research_requests;
+use App\FAQ;
 use Auth;
 use Illuminate\Http\Request;
 use Validator;
 
 class AdminController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
         $researches = Research::all();
@@ -38,8 +29,9 @@ class AdminController extends Controller
         $rejected_count = $rejected_requests->count();
         $completed_requests = Research_requests::where('status', 'Completed')->get();
         $completed_count = $completed_requests->count();
+        $faq = FAQ::all();
 
-        return view('admin.admin_home', compact('researches', 'portfolio', 'pending_requests', 'pending_count', 'accepted_requests', 'accepted_count' , 'rejected_requests', 'rejected_count', 'completed_requests', 'completed_count'));
+        return view('admin.admin_home', compact('researches', 'portfolio', 'faq', 'pending_requests', 'pending_count', 'accepted_requests', 'accepted_count' , 'rejected_requests', 'rejected_count', 'completed_requests', 'completed_count'));
     }
 
     public function accept_request($id)

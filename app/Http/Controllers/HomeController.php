@@ -38,9 +38,8 @@ class HomeController extends Controller
 
     public function faq()
     {
-        // $portfolio = Portfolio::all();
-        // return view('portfolio', compact('portfolio'));
-        return view('faq');
+        $faq = FAQ::all();
+        return view('faq', compact('faq'));
     }
 
     public function about_us()

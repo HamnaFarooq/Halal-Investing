@@ -1,5 +1,6 @@
 @include('partials.add_to_research_form')
 @include('partials.add_to_portfolio_form')
+@include('partials.add_to_faq_form')
 
 @extends('layouts.app')
 
@@ -281,38 +282,6 @@ Admin
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="table-responsive">
-                        <table class="table table-hover text-center">
-                            <thead>
-                                <tr class="bg-dark text-light">
-                                    <th scope="col">Sr. no.</th>
-                                    <th scope="col">Company name</th>
-                                    <th scope="col">Shares</th>
-                                    <th scope="col">Action</th>
-                                    <th scope="col">Share Price($)</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Edit</th>
-                                    <th scope="col">Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody class="border">
-                            @foreach ($portfolio as $share)
-                            @include('partials.edit_portfolio_form')
-                                <tr>
-                                    <th scope="row"> {{ $loop->iteration }} </th>
-                                    <td> {{ $share->company_name}} </td>
-                                    <td> {{ $share->share_percentage}} % </td>
-                                    <td> {{ $share->action}} </td>
-                                    <td> {{ $share->share_price}} </td>
-                                    <td> {{ $share->date}} </td>
-                                    <td> <button class="btn btn-primary" data-toggle="modal" data-target="#edit_portfolio{{$share->id}}_form"> Edit </button> </td>
-                                    <td> <a href="/delete_portfolio/{{$share->id}}"> <button class="btn btn-primary"> Delete </button> </a> </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        </div> -->
-
                     </div>
 
                     <div class="tab-pane fade" id="faq">
@@ -322,7 +291,31 @@ Admin
                                 Add to FAQ
                             </button>
                         </div>
-                        <!--  -->
+                        <div class="table-responsive">
+                            <table class="table table-hover text-center">
+                                <thead>
+                                    <tr class="bg-dark text-light">
+                                        <th scope="col">Sr. no.</th>
+                                        <th scope="col">Question</th>
+                                        <th scope="col">Answer</th>
+                                        <th scope="col">Edit</th>
+                                        <th scope="col">Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="border">
+                                    @foreach ($faq as $question)
+                                    @include('partials.edit_faq_form')
+                                    <tr>
+                                        <th scope="row"> {{ $loop->iteration }} </th>
+                                        <td> {{ $question->question}} </td>
+                                        <td> {{ $question->answer}} </td>
+                                        <td> <button class="btn btn-primary" data-toggle="modal" data-target="#edit_faq{{$question->id}}_form"> Edit </button> </td>
+                                        <td> <a href="/delete_faq/{{$question->id}}"> <button class="btn btn-primary"> Delete </button> </a> </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                 </div>

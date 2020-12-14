@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('pagename')
+Edit Research
+@endsection
+
 @section('content')
 <div class="container py-5">
     <a href="/admin"> <button class="btn btn-primary my-2"> Go back </button> </a>
