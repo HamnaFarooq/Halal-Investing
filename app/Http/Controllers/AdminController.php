@@ -39,7 +39,7 @@ class AdminController extends Controller
         $req = Research_requests::where('id', $id)->first();
         // if(Auth::user()->user_type == "admin")
         {
-            $req->update(['status'=>'Accepted', 'comments'=> 'We are researching, please wait!' ]);
+            $req->update(['status'=>'Accepted', 'comments'=> 'Research in Progress' ]);
             $req->save();
         }
         return redirect()->back();

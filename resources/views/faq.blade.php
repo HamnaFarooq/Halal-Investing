@@ -9,7 +9,7 @@ FAQ
     <div class="row justify-content-center py-5">
         <div class="col-md-8">
             <h3 class="text-center mb-5">
-                FAQ
+                Frequently Asked Questions (FAQ)
             </h3>
             <div class="accordion accordion-type-2 accordion-flush" id="accordion">
                 @foreach ( $faq as $question )

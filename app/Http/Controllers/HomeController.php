@@ -44,13 +44,16 @@ class HomeController extends Controller
 
     public function about_us()
     {
-        // $portfolio = Portfolio::all();
-        // return view('portfolio', compact('portfolio'));
+        return view('about_us');
     }
 
-    // public function portfolio()
-    // {
-    //     $portfolio = Portfolio::all();
-    //     return view('portfolio', compact('portfolio'));
-    // }
+    public function desclaimer()
+    {
+        return view('desclaimer');
+    }
+
+    public function contact_us()
+    {
+        return view('contact_us');
+    }
 }
