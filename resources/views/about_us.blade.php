@@ -5,13 +5,16 @@ About us
 @endsection
 
 @section('content')
+<div class="position-relative">
+    <img src="/images/football.jpg" class="mx-auto img-fluid" alt="image">
+    <div class="caption text-light">
+        <h1>About Us</h1>
+    </div>
+</div>
 <div class="container">
-<!-- style="background-image: url('football.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-size: 100% 100%;" -->
-    <div class="row justify-content-center py-5">
+
+    <div class="row justify-content-center py-3">
         <div class="col-md-8">
-            <h3 class="text-center mb-5">
-                <u>About us</u>
-            </h3>
 
             <p>We group of like-minded investors from Bangalore, India. We are engineers by profession and working in reputed MNCs. So, this is not our primary source of income. We are practicing Muslims and believe in halal-way of earning our living.
                 <br><br>
