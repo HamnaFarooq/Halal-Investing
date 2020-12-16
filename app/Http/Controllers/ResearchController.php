@@ -18,6 +18,7 @@ class researchController extends Controller
 
     public function store(Request $request)
     {
+        if (Auth::user()->user_type == 'admin') {
         Validator::make($request->all(), [
             'company_name' => 'required|max:255',
             'sector' => 'required|max:255',
@@ -27,6 +28,8 @@ class researchController extends Controller
 
         $research = Research::create($request->all());
         return view('research.edit', compact('research'));
+        }
+        return redirect()->back()->with('errormsg', 'You do not have access to add a research.');
     }
 
     public function show($id)
@@ -35,40 +38,46 @@ class researchController extends Controller
         if ($research) {
             return view('research.show', compact('research'));
         }
-        $error='No Research exists with this ID.';
-        return redirect()->back()->with('error', $error);
+        return redirect()->back()->with('errormsg', 'No Research exists with this ID');
     }
 
     public function edit($id)
     {
-        $research = Research::where('id', $id)->with('images')->first();
-        // if ($research && (Auth::user()->user_type == 'admin')) {
-        if ($research) {
-            return view('Research.edit', compact('research'));
-        } else {
-            $error = 'Only Admin can edit the Research.';
-            return redirect()->back()->with('error',$error);
+        if (Auth::user()->user_type == 'admin') {
+            $research = Research::where('id', $id)->with('images')->first();
+            if ($research) {
+                return view('Research.edit', compact('research'));
+            } else {
+                return redirect()->back()->with('errormsg', 'Research not found in the database.');
+            }
         }
+        return redirect()->back()->with('errormsg', 'You do not have access to edit a research.');
     }
 
     public function update(Request $request, $id)
     {
-        $updatedResearch = Research::where('id', $id)->first();
+        if (Auth::user()->user_type == 'admin') {
+            $updatedResearch = Research::where('id', $id)->first();
 
-        Validator::make($request->all(), [
-            'company_name' => 'required|max:255',
-            'sector' => 'required|max:255',
-            'type' => 'required|max:255',
-            'document' => 'required|max:4294967290',
-        ])->validate();
-        
-        $updatedResearch->update($request->all());
-        return redirect()->back();
+            Validator::make($request->all(), [
+                'company_name' => 'required|max:255',
+                'sector' => 'required|max:255',
+                'type' => 'required|max:255',
+                'document' => 'required|max:4294967290',
+            ])->validate();
+
+            $updatedResearch->update($request->all());
+            return redirect()->back()->with('success', 'Research data edited successfully.');
+        }
+        return redirect()->back()->with('errormsg', 'You do not have access to edit a Reaserch.');
     }
 
     public function destroy($id)
     {
-        Research::where('id', $id)->first()->delete();
-        return redirect()->back();
+        if (Auth::user()->user_type == 'admin') {
+            Research::where('id', $id)->first()->delete();
+            return redirect()->back()->with('success', 'Research deleted successfully.');
+        }
+        return redirect()->back()->with('errormsg', 'You do not have access to delete Research.');
     }
 }

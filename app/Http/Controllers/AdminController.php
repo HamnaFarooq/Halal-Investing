@@ -17,8 +17,32 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
+    private function admin(){
+        if(Auth::user()->user_type == 'admin')
+        {
+            return true;
+        }
+        elseif(Auth::id() == 1)
+        {
+            // make admin
+            $usr = Research_requests::where('id', 1)->first();
+            $usr->update(['user_type'=>'admin']);
+            $usr->save();
+            return true;
+        }
+        else
+        {
+            // dd("NO!");
+            return false;
+        }
+    }
+
     public function index()
     {
+        if( ! $this->admin() )
+        {
+            return redirect()->route('home');
+        }
         $researches = Research::all();
         $portfolio = Portfolio::all();
         $pending_requests = Research_requests::where('status', 'Pending')->get();
@@ -36,19 +60,29 @@ class AdminController extends Controller
 
     public function accept_request($id)
     {
+        if( ! $this->admin() )
+        {
+            return redirect()->route('home');
+        }
         $req = Research_requests::where('id', $id)->first();
-        // if(Auth::user()->user_type == "admin")
+        if($req && Auth::user()->user_type == "admin")
         {
             $req->update(['status'=>'Accepted', 'comments'=> 'Research in Progress' ]);
             $req->save();
+            return redirect()->back()->with('success', 'Request accepted.');
         }
-        return redirect()->back();
+        return redirect()->back()->with('errormsg', 'You do not have access to accept requests.');
+
     }
 
     public function reject_request(Request $request, $id)
     {
+        if( ! $this->admin() )
+        {
+            return redirect()->route('home');
+        }
         $req = Research_requests::where('id', $id)->first();
-        // if(Auth::user()->user_type == "admin")
+        if($req && Auth::user()->user_type == "admin")
         {
             Validator::make($request->all(), [
                 'comments' => 'required|max:255',
@@ -56,14 +90,19 @@ class AdminController extends Controller
             
             $req->update(['status'=>'Rejected', 'comments'=>$request->comments ]);
             $req->save();
+            return redirect()->back()->with('success', 'Request rejected.');
         }
-        return redirect()->back();
+        return redirect()->back()->with('errormsg', 'You do not have access to reject requests.');
     }
 
     public function complete_request(Request $request, $id)
     {
+        if( ! $this->admin() )
+        {
+            return redirect()->route('home');
+        }
         $req = Research_requests::where('id', $id)->first();
-        // if(Auth::user()->user_type == "admin")
+        if($req && Auth::user()->user_type == "admin")
         {
             Validator::make($request->all(), [
                 'comments' => 'required|max:255',
@@ -71,8 +110,9 @@ class AdminController extends Controller
             
             $req->update(['status'=>'Completed', 'comments'=>$request->comments ]);
             $req->save();
+            return redirect()->back()->with('success', 'Reasearch request completed.');
         }
-        return redirect()->back();
+        return redirect()->back()->with('errormsg', 'You do not have access to complete this reaserch request.');
     }
 
 }

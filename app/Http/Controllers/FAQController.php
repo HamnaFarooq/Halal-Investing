@@ -16,31 +16,40 @@ class FAQController extends Controller
 
     public function store(Request $request)
     {
-        Validator::make($request->all(), [
-            'question' => 'required|max:4294967290',
-            'answer' => 'required|max:4294967290',
-        ])->validate();
+        if (Auth::user()->user_type == 'admin') {
+            Validator::make($request->all(), [
+                'question' => 'required|max:4294967290',
+                'answer' => 'required|max:4294967290',
+            ])->validate();
 
-        FAQ::create($request->all());
-        return redirect()->back();
+            FAQ::create($request->all());
+            return redirect()->back()->with('success', 'Question added successfully.');
+        }
+        return redirect()->back()->with('errormsg', 'You do not have access to add a question.');
     }
-    
+
     public function update(Request $request, $id)
     {
         $faq = FAQ::where('id', $id)->first();
 
-        Validator::make($request->all(), [
-            'question' => 'required|max:4294967290',
-            'answer' => 'required|max:4294967290',
-        ])->validate();
-        
-        $faq->update($request->all());
-        return redirect()->back();
+        if ($faq && Auth::user()->user_type == 'admin') {
+            Validator::make($request->all(), [
+                'question' => 'required|max:4294967290',
+                'answer' => 'required|max:4294967290',
+            ])->validate();
+
+            $faq->update($request->all());
+            return redirect()->back()->with('success', 'Question edited successfully.');
+        }
+        return redirect()->back()->with('errormsg', 'You do not have access to edit this question.');
     }
 
     public function destroy($id)
     {
-        FAQ::where('id', $id)->first()->delete();
-        return redirect()->back();
+        if (Auth::user()->user_type == 'admin') {
+            FAQ::where('id', $id)->first()->delete();
+            return redirect()->back()->with('success', 'Question deleted successfully.');
+        }
+        return redirect()->back()->with('errormsg', 'You do not have access to delete this question.');
     }
 }
