@@ -87,6 +87,7 @@ Our Portfolio
         </div>
 
         @else
+        @if(Auth::user()->subscribed == 'yes')
         <!-- real data here -->
         <div class="table-responsive">
             <table class="table table-hover text-center">
@@ -114,6 +115,56 @@ Our Portfolio
                 </tbody>
             </table>
         </div>
+        @else
+        <div class="col">
+        <div class="text-right">
+            <a href="/subscribed">
+            <button class="btn btn-primary" >
+                Register
+            </button>
+            </a>
+        </div>
+        <h5 class="text-center">Please register to our portfolio services to view</h5>
+    </div>
+        <br>
+        <div class="table-responsive blur">
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr class="bg-dark text-light">
+                        <th scope="col">Sr. no.</th>
+                        <th scope="col">Company name</th>
+                        <th scope="col">Sector</th>
+                        <th scope="col">Investment</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody class="border">
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Dummy</td>
+                        <td>Oil</td>
+                        <td> 000 </td>
+                        <td>Oct 2020</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Dummy</td>
+                        <td>Electronics</td>
+                        <td> 000 </td>
+                        <td>Feb 2020</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Dummy</td>
+                        <td>Pharma</td>
+                        <td> 000 </td>
+                        <td>Aug 2020</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        @endif
+
         @endguest
 
     </div>

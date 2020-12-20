@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 // User routes //
 // ----------- //
@@ -13,8 +13,8 @@ Route::get('/research_reports', 'HomeController@research_reports')->name('resear
 Route::get('/request_report', 'HomeController@request_report')->name('request_report');
 Route::get('/portfolio', 'HomeController@portfolio')->name('portfolio');
 // Request research routes
-Route::get('/my_requests', 'HomeController@my_requests')->name('my_requests');
-Route::post('/request_research', 'Research_requestsController@store')->name('store_request_research');
+Route::get('/my_requests', 'HomeController@my_requests')->name('my_requests')->middleware('verified');
+Route::post('/request_research', 'Research_requestsController@store')->name('store_request_research')->middleware('verified');
 Route::get('/delete_request_research/{id}', 'Research_requestsController@destroy')->name('destroy_request_research');
 // footer Routes
 Route::get('/faq', 'HomeController@faq')->name('faq');
@@ -47,3 +47,9 @@ Route::post('/complete_request/{id}', 'AdminController@complete_request');
 Route::post('/faq', 'FAQController@store')->name('store_faq');
 Route::get('/delete_faq/{id}', 'FAQController@destroy')->name('delete_faq');
 Route::post('/update_faq/{id}', 'FAQController@update')->name('update_faq');
+
+// Email routes
+Route::get('/registered', 'MailController@registered')->name('sendregisteredemail');
+Route::get('/subscribed', 'PortfolioController@subscribed')->name('sendsubscribedemail');
+Route::get('/expiring', 'MailController@notifyexpiring')->name('sendnotifyexpiring');
+

@@ -21,12 +21,14 @@ class Research_requestsController extends Controller
             'company_name' => 'required|max:255',
             'sector' => 'required|max:255',
             'expected_by' => 'date|after:today|required|max:255',
-            'request' => 'required|max:4294967290',
+            'request' => 'max:4294967290',
         ])->validate();
 
         $request->merge(['status' => 'Pending']);
         $request->merge(['user_id' => Auth::id()]);
         $request = research_requests::create($request->all());
+
+        app('App\Http\Controllers\MailController')->report_requested($request->company_name);
 
         return redirect()->back()->with('success', 'Request submitted successfully.');
     }

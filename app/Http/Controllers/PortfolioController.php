@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Portfolio;
+use App\User;
 use Auth;
 use Illuminate\Http\Request;
 use Validator;
@@ -28,6 +29,9 @@ class portfolioController extends Controller
             ])->validate();
 
             portfolio::create($request->all());
+            
+            app('App\Http\Controllers\MailController')->portfolioupdate( $request->company_name, $request->share_percentage, $request->action, $request->share_price );
+
             return redirect()->back()->with('success', 'Portfolio added successfully.');
         }
         return redirect()->back()->with('errormsg', 'You do not have access to add a portfolio.');
@@ -59,5 +63,15 @@ class portfolioController extends Controller
             return redirect()->back()->with('success', 'Portfolio deleted successfully.');
         }
         return redirect()->back()->with('errormsg', 'You do not have access to edit a portfolio.');
+    }
+
+    public function subscribed()
+    {
+        $usr = User::where('id', Auth::id())->first();
+        $usr->update(['subscribed' => 'yes', 'subscription_ends_at' => today()]);
+        // if there is a start date, so change start date as well
+        $usr->save();
+        app('App\Http\Controllers\MailController')->subscribed(today());
+        return redirect()->back()->with('success','Subscribed to protfolio successfully');
     }
 }

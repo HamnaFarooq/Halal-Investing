@@ -5,6 +5,8 @@ use App\Research;
 use App\Portfolio;
 use App\Research_requests;
 use App\FAQ;
+use Mail;
+use Auth;
 
 class HomeController extends Controller
 {
