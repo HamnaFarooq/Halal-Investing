@@ -138,6 +138,9 @@ Admin
                                 <a class="nav-link active" data-toggle="tab" href="#accepted">Active <span class="badge badge-primary badge-pill"> {{$accepted_count}} </span></a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#unpaid">Unpaid <span class="badge badge-primary badge-pill"> {{$unpaid_count}} </span></a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#pending">Pending <span class="badge badge-primary badge-pill"> {{$pending_count}} </span></a>
                             </li>
                             <li class="nav-item">
@@ -159,6 +162,7 @@ Admin
                                                     <th scope="col">Sector</th>
                                                     <th scope="col">Expected by</th>
                                                     <th scope="col">Comments</th>
+                                                    <th scope="col">Price</th>
                                                     <th scope="col">Delivery link</th>
                                                     <!-- <th scope="col">Reject</th> -->
                                                     <!-- <th scope="col">Delete</th> -->
@@ -173,9 +177,47 @@ Admin
                                                     <td> {{ $request->sector }} </td>
                                                     <td> {{ $request->expected_by }} </td>
                                                     <td> {{ $request->request }} </td>
+                                                    <td> {{ $request->price }} </td>
                                                     <td> 
                                                         <button class="btn btn-success" data-toggle="modal" data-target="#deliver_research{{$request->id}}_form"> Deliver </button>
                                                     </td>
+                                                    <!-- <td> <a href=""> <button class="btn btn-secondary"> Reject </button> </a> </td> -->
+                                                    <!-- <td> <a href="/delete_request_research/{{$request->id}}"> <button class="btn btn-danger"> Delete </button> </a> </td> -->
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="unpaid">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover text-center">
+                                            <thead>
+                                                <tr class="bg-dark text-light">
+                                                    <th scope="col">Sr. no.</th>
+                                                    <th scope="col">Company name</th>
+                                                    <th scope="col">Sector</th>
+                                                    <th scope="col">Expected by</th>
+                                                    <th scope="col">Comments</th>
+                                                    <th scope="col">Demand</th>
+                                                    <!-- <th scope="col">Delivery link</th> -->
+                                                    <!-- <th scope="col">Reject</th> -->
+                                                    <!-- <th scope="col">Delete</th> -->
+                                                </tr>
+                                            </thead>
+                                            <tbody class="border">
+                                                @foreach ($unpaid_requests as $request)
+                                                @include('partials.deliver_research_form')
+                                                <tr>
+                                                    <th scope="row">{{ $loop->iteration }}</th>
+                                                    <td> {{ $request->company_name }} </td>
+                                                    <td> {{ $request->sector }} </td>
+                                                    <td> {{ $request->expected_by }} </td>
+                                                    <td> {{ $request->request }} </td>
+                                                    <td> {{ $request->price }} </td>
+                                                    <!-- <td> 
+                                                        <button class="btn btn-success" data-toggle="modal" data-target="#deliver_research{{$request->id}}_form"> Deliver </button>
+                                                    </td> -->
                                                     <!-- <td> <a href=""> <button class="btn btn-secondary"> Reject </button> </a> </td> -->
                                                     <!-- <td> <a href="/delete_request_research/{{$request->id}}"> <button class="btn btn-danger"> Delete </button> </a> </td> -->
                                                 </tr>
@@ -202,13 +244,15 @@ Admin
                                             <tbody class="border">
                                                 @foreach ($pending_requests as $request)
                                                 @include('partials.reject_research_form')
+                                                @include('partials.accept_research_form')
                                                 <tr>
                                                     <th scope="row">{{ $loop->iteration }}</th>
                                                     <td> {{ $request->company_name }} </td>
                                                     <td> {{ $request->sector }} </td>
                                                     <td> {{ $request->expected_by }} </td>
                                                     <td> {{ $request->request }} </td>
-                                                    <td> <a href="/accept_request/{{$request->id}}"> <button class="btn btn-primary"> Accept </button> </a> </td>
+                                                    <!-- <td> <a href="/accept_request/{{$request->id}}"> <button class="btn btn-primary"> Accept </button> </a> </td> -->
+                                                    <td> <button class="btn btn-primary" data-toggle="modal" data-target="#accept_research{{$request->id}}_form"> Accept </button> </td>
                                                     <td> <button class="btn btn-secondary" data-toggle="modal" data-target="#reject_research{{$request->id}}_form"> Reject </button> </td>
                                                     <td> <a href="/delete_request_research/{{$request->id}}"> <button class="btn btn-danger"> Delete </button> </a> </td>
                                                 </tr>
@@ -269,8 +313,7 @@ Admin
                                                     <td> {{ $request->company_name }} </td>
                                                     <td> {{ $request->sector }} </td>
                                                     <td> {{ $request->expected_by }} </td>
-                                                    <td> {{ $request->request }} </td>
-                                                    <td> {{ $request->last_updated }} </td>
+                                                    <td> {{ $request->updated_at }} </td>
                                                     <td> 
                                                         <a href="{{$request->comments}}" target="_blank"> <button class="btn btn-primary"> Delivered Research </button> </a>
                                                     </td>

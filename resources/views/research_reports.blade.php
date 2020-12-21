@@ -92,6 +92,7 @@ Research Reports
         </div>
 
         @else
+        @if(Auth::user()->reports == 'subscribed')
         <!-- real data here -->
         <div class="table-responsive">
             <table class="table table-hover text-center">
@@ -107,6 +108,40 @@ Research Reports
                 <tbody class="border">
                     <!-- free ones first -->
                     @foreach ($researches as $research)
+                    @if($research->type != 'private')
+                    <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $research->company_name }}</td>
+                        <td>{{ $research->sector }}</td>
+                        <td>{{ $research->updated_at }}</td>
+                        @if($research->type != 'free')
+                        <td> <a href="/read_research/{{$research->id}}" target="_blank"> <button class="btn btn-primary"> Free </button> </a> </td>
+                        @else
+                        <td> <a href="/read_research/{{$research->id}}" target="_blank"> <button class="btn btn-primary"> Paid </button> </a> </td>
+                        @endif
+                    </tr>
+                    @endif
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        @else
+
+        <div class="table-responsive">
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr class="bg-dark text-light">
+                        <th scope="col">Sr. no.</th>
+                        <th scope="col">Company name</th>
+                        <th scope="col">Sector</th>
+                        <th scope="col">Last updated</th>
+                        <th scope="col">Open</th>
+                    </tr>
+                </thead>
+                <tbody class="border">
+                    <!-- free ones first -->
+                    @foreach ($researches as $research)
+                    @if($research->type == 'free')
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $research->company_name }}</td>
@@ -114,10 +149,20 @@ Research Reports
                         <td>{{ $research->updated_at }}</td>
                         <td> <a href="/read_research/{{$research->id}}" target="_blank"> <button class="btn btn-primary"> Free </button> </a> </td>
                     </tr>
+                    else
+                    <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $research->company_name }}</td>
+                        <td>{{ $research->sector }}</td>
+                        <td>{{ $research->updated_at }}</td>
+                        <td><button class="btn btn-disabled"> Paid </button> </td>
+                    </tr>
+                    @endif
                     @endforeach
                 </tbody>
             </table>
         </div>
+        @endif
         @endguest
 
     </div>

@@ -7,6 +7,7 @@ use App\User;
 use Auth;
 use Illuminate\Http\Request;
 use Validator;
+use DateTime;
 
 class portfolioController extends Controller
 {
@@ -29,8 +30,8 @@ class portfolioController extends Controller
             ])->validate();
 
             portfolio::create($request->all());
-            
-            app('App\Http\Controllers\MailController')->portfolioupdate( $request->company_name, $request->share_percentage, $request->action, $request->share_price );
+
+            app('App\Http\Controllers\MailController')->portfolioupdate($request->company_name, $request->share_percentage, $request->action, $request->share_price);
 
             return redirect()->back()->with('success', 'Portfolio added successfully.');
         }
@@ -68,10 +69,21 @@ class portfolioController extends Controller
     public function subscribed()
     {
         $usr = User::where('id', Auth::id())->first();
-        $usr->update(['subscribed' => 'yes', 'subscription_ends_at' => today()]);
+        if ($usr->portfolio_starts_at) {
+            // get ends at and add 365 days to it
+            $ends = new Datetime($usr->portfolio_ends_at);
+            date_add($ends, date_interval_create_from_date_string('365 days'));
+            $usr->update(['portfolio' => 'subscribed', 'portfolio_ends_at' => $ends]);
+            // dd($usr);
+        } else {
+            // add today to starts
+            // get today add365 days and put it on ends
+            $usr->update(['portfolio' => 'subscribed', 'portfolio_starts_at' => today(), 'portfolio_ends_at' => today()->addDays(365)]);
+            // dd($usr);
+        }
         // if there is a start date, so change start date as well
         $usr->save();
         app('App\Http\Controllers\MailController')->subscribed(today());
-        return redirect()->back()->with('success','Subscribed to protfolio successfully');
+        return redirect()->back()->with('success', 'Subscribed to protfolio successfully');
     }
 }

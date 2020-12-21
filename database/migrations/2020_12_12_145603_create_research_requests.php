@@ -21,6 +21,7 @@ class CreateResearchRequests extends Migration
             $table->timestamp('expected_by');
             $table->longText('request')->nullable();
             $table->string('status');
+            $table->double('price')->nullable();
             $table->Text('comments')->nullable();
             $table->timestamps();
         });

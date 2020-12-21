@@ -37,16 +37,23 @@
                     <div class="form-group">
                         <label for="action">Action:</label>
                         <select name="action" class="form-control" required>
-                            <option value="buy" {{ ($share->action == 'partial_buy' ? "selected":"") }} >Partial buy</option>
-                            <option value="buy" {{ ($share->action == 'buy' ? "selected":"") }} >buy</option>
-                            <option value="sell" {{ ($share->action == 'partial_sell' ? "selected":"") }} >Partial sell</option>
-                            <option value="sell" {{ ($share->action == 'sell' ? "selected":"") }} >sell</option>
+                            <option value="buy" {{ ($share->action == 'partial_buy' ? "selected":"") }}>Partial buy</option>
+                            <option value="buy" {{ ($share->action == 'buy' ? "selected":"") }}>buy</option>
+                            <option value="sell" {{ ($share->action == 'partial_sell' ? "selected":"") }}>Partial sell</option>
+                            <option value="sell" {{ ($share->action == 'sell' ? "selected":"") }}>sell</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="share_price">Share Price ($):</label>
-                        <input type="float" class="form-control" name="share_price" placeholder="Enter price" value="{{ $share->share_price }}" required required required pattern="[+-]?([0-9]*[.])?[0-9]+" minlength="1">
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <input type="float" class="form-control" name="share_price" placeholder="Enter price" value="{{ $share->share_price }}" required pattern="[+-]?([0-9]*[.])?[0-9]+" minlength="1">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">$</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">

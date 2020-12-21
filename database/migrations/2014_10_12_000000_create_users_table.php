@@ -20,9 +20,12 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('user_type');
             $table->string('status');
-            $table->string('subscribed');
-            $table->timestamp('subscription_starts_at')->nullable();
-            $table->timestamp('subscription_ends_at')->nullable();
+            $table->string('portfolio');
+            $table->string('reports');
+            $table->timestamp('portfolio_starts_at')->nullable();
+            $table->timestamp('portfolio_ends_at')->nullable();
+            $table->timestamp('reports_starts_at')->nullable();
+            $table->timestamp('reports_ends_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
