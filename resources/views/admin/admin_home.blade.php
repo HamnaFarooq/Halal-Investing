@@ -244,6 +244,7 @@ Admin
                                             <tbody class="border">
                                                 @foreach ($pending_requests as $request)
                                                 @include('partials.reject_research_form')
+                                                @include('partials.accept_research_form')
                                                 <tr>
                                                     <th scope="row">{{ $loop->iteration }}</th>
                                                     <td> {{ $request->company_name }} </td>
