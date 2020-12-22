@@ -20,6 +20,7 @@ My Requests
                             <th scope="col">Expected by</th>
                             <th scope="col">Status</th>
                             <th scope="col">Response</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody class="border">
@@ -32,8 +33,24 @@ My Requests
                             <td>
                                 @if($request->status == 'Rejected' || $request->status == 'Accepted')
                                 {{ $request->comments }}
+                                @elseif($request->status == 'Unpaid')
+                                Accepted! please pay 250$ upfront
                                 @elseif($request->status == 'Completed')
+                                <!-- pay other half first -->
                                 <a href="{{$request->comments}}" target="_blank"> <button class="btn btn-primary"> Open Research </button> </a>
+                                @endif
+                            </td>
+                            <td>
+                                @if($request->status == 'Pending')
+                                <a href="/delete_request_research/{{$request->id}}"> <button class="btn btn-danger"> Delete </button> </a>
+                                @elseif($request->status == 'Unpaid')
+                                <div class="" id="paypal-payment-button">
+                                </div>
+                                <script src="https://www.paypal.com/sdk/js?client-id=AVLB8-JHfGJUSlJjs3sg2qSmirjFNZzlICouxrfoEyZjEm0rrXjeBBmcvrVHjCQ8cSGGl1mFJ8BPFF8M&disable-funding=credit,card&currency=USD"></script>
+                                <script src="js/upfront.js"> link = "/Check" </script>
+                                <!-- <button class="btn btn-primary">PayPal</button> -->
+                                @else
+                                <button class="btn btn-disabled">Please wait</button>
                                 @endif
                             </td>
                         </tr>

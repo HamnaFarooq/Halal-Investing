@@ -40,6 +40,7 @@ Route::post('/update_portfolio/{id}', 'PortfolioController@update')->name('updat
 Route::post('/add_image', 'ImagesController@store');
 Route::get('/remove_image/{id}', 'ImagesController@destroy');
 // research request rouets
+// Route::post('/accept_request/{id}', 'AdminController@accept_request');
 Route::get('/accept_request/{id}', 'AdminController@accept_request');
 Route::post('/reject_request/{id}', 'AdminController@reject_request');
 Route::post('/complete_request/{id}', 'AdminController@complete_request');
@@ -50,6 +51,7 @@ Route::post('/update_faq/{id}', 'FAQController@update')->name('update_faq');
 
 // Email routes
 Route::get('/registered', 'MailController@registered')->name('sendregisteredemail');
-Route::get('/subscribed', 'PortfolioController@subscribed')->name('sendsubscribedemail');
+Route::get('/portfoliosubscribed', 'PortfolioController@subscribed')->name('sendsubscribedemailportfolio');
+Route::get('/reportssubscribed', 'ResearchController@subscribed')->name('sendsubscribedemailreports');
 Route::get('/expiring', 'MailController@notifyexpiring')->name('sendnotifyexpiring');
 

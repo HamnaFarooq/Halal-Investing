@@ -35,8 +35,13 @@
                                                                     <br>
                                                                     We acknowledge the receipt of your request. We will get back to you within <b>3 days</b> with our response.
                                                                 </p>
+                                                                <br>
+                                                                <p style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
+                                                                    You can view the status of your order by visiting ‘My Requests’ page on www.halalinvestings.com.
+                                                                </p>
 
-                                                                <br><hr>
+                                                                <br>
+                                                                <hr>
                                                                 <p style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
                                                                     We thank you for being our valued member and assure you of our best services at all times.
                                                                     For any queries & clarification, please write to us at support@halalinvestings.com.

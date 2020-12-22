@@ -31,12 +31,11 @@
                                                             <td style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';max-width:100vw;padding:32px">
                                                                 <h1 style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';color:#3d4852;font-size:18px;font-weight:bold;margin-top:0;text-align:left">Hello {{ $to }} !</h1>
                                                                 <p style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
-                                                                    Thank you for subscribing to our Portfolio. Your payment was successful. Your subscription will expire on {{ $expiry }}.
+                                                                    Thank you for subscribing to our {{ $service }} Services. Your payment was successful. Your subscription will expire on {{ $expiry }}.
                                                                     <br>
                                                                     <!-- Below are your subscription details. You can view the status of your order by visiting ‘My Orders’ page on www.halalinvestings.com. -->
                                                                 </p>
-
-                                                                <!-- table here -->
+                                                                
                                                                 <br><hr>
                                                                 <p style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-size:16px;line-height:1.5em;margin-top:0;text-align:left">
                                                                     We thank you for being our valued member and assure you of our best services at all times.

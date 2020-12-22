@@ -38,13 +38,24 @@ class mailController extends Controller
         });
     }
 
-    public function subscribed($expiry)
+    public function portfolio_subscribed($expiry)
     {
         $to_name = Auth::user()->name;
         $to_email = Auth::user()->email;
-        $data = array('to' => $to_name, 'expiry' => $expiry);
+        $data = array('to' => $to_name, 'service' => 'Portfolio', 'expiry' => $expiry);
         Mail::send('emails.subscribed', $data, function ($message) use ($to_name, $to_email) {
-            $message->to($to_email, $to_name)->subject('Subscribed');
+            $message->to($to_email, $to_name)->subject('Subscribed to Portfolio');
+            $message->from('F2016065099@umt.edu.pk', 'Halal Investings');
+        });
+    }
+
+    public function reports_subscribed($expiry)
+    {
+        $to_name = Auth::user()->name;
+        $to_email = Auth::user()->email;
+        $data = array('to' => $to_name, 'service' => 'Reasearch Reports', 'expiry' => $expiry);
+        Mail::send('emails.subscribed', $data, function ($message) use ($to_name, $to_email) {
+            $message->to($to_email, $to_name)->subject('Subscribed to research reports');
             $message->from('F2016065099@umt.edu.pk', 'Halal Investings');
         });
     }

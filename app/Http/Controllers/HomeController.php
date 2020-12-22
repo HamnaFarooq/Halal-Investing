@@ -5,19 +5,24 @@ use App\Research;
 use App\Portfolio;
 use App\Research_requests;
 use App\FAQ;
-use Mail;
+// use Mail;
 use Auth;
 
 class HomeController extends Controller
 {
     public function index()
     {
+        if(Auth::user() && Auth::user()->user_type == 'admin')
+        {
+            return redirect('/admin');
+        }
         return view('welcome');
     }
 
     public function request_report()
     {
-        return view('request_report');
+        $research = Research::where('type','free')->inRandomOrder()->get()->first();
+        return view('request_report', compact('research'));
     }
 
     public function research_reports()

@@ -33,6 +33,31 @@ class Research_requestsController extends Controller
         return redirect()->back()->with('success', 'Request submitted successfully.');
     }
 
+    public function upfront_payment( $id)
+    {
+        $req = Research_requests::where('id', $id)->first();
+        if($req && $req->user_id == Auth::id() )
+        {
+            $req->update(['status'=>'Accepted', 'comments'=> 'Research in progress', 'price' => 250 ]);
+            $req->save();
+            return redirect()->back()->with('success', 'Request accepted.');
+        }
+        return redirect()->back()->with('errormsg', 'You do not have access to accept requests.');
+    }
+
+    public function complete_payment( $id)
+    {
+        $req = Research_requests::where('id', $id)->first();
+        if($req && $req->user_id == Auth::id() )
+        {
+            $newprice = $req->price + 250;
+            $req->update([ 'price' => $newprice ]);
+            $req->save();
+            return redirect()->back()->with('success', 'Request accepted.');
+        }
+        return redirect()->back()->with('errormsg', 'You do not have access to accept requests.');
+    }
+
     public function destroy($id)
     {
         $req = research_requests::where('id', $id)->first();

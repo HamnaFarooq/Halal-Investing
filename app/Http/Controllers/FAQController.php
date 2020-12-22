@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\FAQ;
 use Illuminate\Http\Request;
 use Validator;
+use Auth;
 
 class FAQController extends Controller
 {

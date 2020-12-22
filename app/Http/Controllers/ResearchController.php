@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Research;
+use App\User;
 use Auth;
 use Illuminate\Http\Request;
 use Validator;
+use DateTime;
 
 class researchController extends Controller
 {
@@ -79,5 +81,20 @@ class researchController extends Controller
             return redirect()->back()->with('success', 'Research deleted successfully.');
         }
         return redirect()->back()->with('errormsg', 'You do not have access to delete Research.');
+    }
+
+    public function subscribed()
+    {
+        $usr = User::where('id', Auth::id())->first();
+        if ($usr->reports_starts_at) {
+            $ends = new Datetime($usr->reports_ends_at);
+            date_add($ends, date_interval_create_from_date_string('365 days'));
+            $usr->update(['reports' => 'subscribed', 'reports_ends_at' => $ends]);
+        } else {
+            $usr->update(['reports' => 'subscribed', 'reports_starts_at' => today(), 'reports_ends_at' => today()->addDays(365)]);
+        }
+        $usr->save();
+        app('App\Http\Controllers\MailController')->reports_subscribed($usr->portfolio_ends_at);
+        return redirect('/research_reports')->with('success', 'Thank you for Subscribing to Our Research Reports');
     }
 }

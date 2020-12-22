@@ -92,6 +92,7 @@ Research Reports
         </div>
 
         @else
+        @if(Auth::user()->reports == 'subscribed')
         <!-- real data here -->
         <div class="table-responsive">
             <table class="table table-hover text-center">
@@ -107,6 +108,50 @@ Research Reports
                 <tbody class="border">
                     <!-- free ones first -->
                     @foreach ($researches as $research)
+                    @if($research->type != 'private')
+                    <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $research->company_name }}</td>
+                        <td>{{ $research->sector }}</td>
+                        <td>{{ $research->updated_at }}</td>
+                        @if($research->type != 'free')
+                        <td> <a href="/read_research/{{$research->id}}" target="_blank"> <button class="btn btn-primary"> Free </button> </a> </td>
+                        @else
+                        <td> <a href="/read_research/{{$research->id}}" target="_blank"> <button class="btn btn-primary"> Paid </button> </a> </td>
+                        @endif
+                    </tr>
+                    @endif
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        @else
+        <div class="col">
+            <div class="text-right">
+                <div class="btn" id="paypal-payment-button">
+                </div>
+                <script src="https://www.paypal.com/sdk/js?client-id=AVLB8-JHfGJUSlJjs3sg2qSmirjFNZzlICouxrfoEyZjEm0rrXjeBBmcvrVHjCQ8cSGGl1mFJ8BPFF8M&disable-funding=credit,card&currency=USD"></script>
+                <script src="js/reports.js"></script>
+                <!-- <a href="/portfoliosubscribed"></a> -->
+            </div>
+            <h5 class="text-center">Please register to our Research Reports services to view paid reports for 1 year</h5>
+        </div>
+        <br>
+        <div class="table-responsive">
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr class="bg-dark text-light">
+                        <th scope="col">Sr. no.</th>
+                        <th scope="col">Company name</th>
+                        <th scope="col">Sector</th>
+                        <th scope="col">Last updated</th>
+                        <th scope="col">Open</th>
+                    </tr>
+                </thead>
+                <tbody class="border">
+                    <!-- free ones first -->
+                    @foreach ($researches as $research)
+                    @if($research->type == 'free')
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $research->company_name }}</td>
@@ -114,10 +159,20 @@ Research Reports
                         <td>{{ $research->updated_at }}</td>
                         <td> <a href="/read_research/{{$research->id}}" target="_blank"> <button class="btn btn-primary"> Free </button> </a> </td>
                     </tr>
+                    @else
+                    <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $research->company_name }}</td>
+                        <td>{{ $research->sector }}</td>
+                        <td>{{ $research->updated_at }}</td>
+                        <td><button class="btn btn-secondary" disabled> Paid </button> </td>
+                    </tr>
+                    @endif
                     @endforeach
                 </tbody>
             </table>
         </div>
+        @endif
         @endguest
 
     </div>
