@@ -115,9 +115,9 @@ Research Reports
                         <td>{{ $research->sector }}</td>
                         <td>{{ $research->updated_at }}</td>
                         @if($research->type != 'free')
-                        <td> <a href="/read_research/{{$research->id}}" target="_blank"> <button class="btn btn-primary"> Free </button> </a> </td>
-                        @else
                         <td> <a href="/read_research/{{$research->id}}" target="_blank"> <button class="btn btn-primary"> Paid </button> </a> </td>
+                        @else
+                        <td> <a href="/read_research/{{$research->id}}" target="_blank"> <button class="btn btn-primary"> Free </button> </a> </td>
                         @endif
                     </tr>
                     @endif
@@ -149,7 +149,6 @@ Research Reports
                     </tr>
                 </thead>
                 <tbody class="border">
-                    <!-- free ones first -->
                     @foreach ($researches as $research)
                     @if($research->type == 'free')
                     <tr>
@@ -159,7 +158,11 @@ Research Reports
                         <td>{{ $research->updated_at }}</td>
                         <td> <a href="/read_research/{{$research->id}}" target="_blank"> <button class="btn btn-primary"> Free </button> </a> </td>
                     </tr>
+                    @else
                     <tr>
+                        <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $research->company_name }}</td>
+                        <td>{{ $research->sector }}</td>
                         <td>{{ $research->updated_at }}</td>
                         <td><button class="btn btn-secondary" disabled> Paid </button> </td>
                     </tr>
