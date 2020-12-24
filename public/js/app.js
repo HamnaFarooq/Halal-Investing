@@ -1,4 +1,6 @@
-/******/ (function(modules) { // webpackBootstrap
+$(".alert").show().delay(4000).fadeOut();
+
+/******/ (function (modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/

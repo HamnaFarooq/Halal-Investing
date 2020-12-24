@@ -19,10 +19,10 @@ paypal.Buttons({
     },
     onApprove: function (data, actions) {
         return actions.order.capture().then(function (details) {
-            window.location.replace("/reportssubscribed")
+            window.location.assign("/reportssubscribed")
         })
     },
     onCancel: function (data) {
-        // window.location.replace("/paypal/Oncancel")
+        window.location.assign("/paypal_error")
     }
 }).render('#paypal-payment-button');

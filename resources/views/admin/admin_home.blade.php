@@ -28,6 +28,9 @@ Admin
                 <li class="col nav-item admin-nav">
                     <a class="nav-link" data-toggle="tab" href="#faq">FAQ</a>
                 </li>
+                <li class="col nav-item admin-nav">
+                    <a class="nav-link" href="/expiring">Send Service Expiring Emails</a>
+                </li>
             </ul>
         </div>
         <div class="col-md-10">

@@ -4,6 +4,17 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 
+// Subscribe again
+Route::get('/subscribe_to_portfolio_again', function () {
+    return view('subscribe_to_portfolio');
+});
+Route::get('/subscribe_to_reports_again', function () {
+    return view('subscribe_to_reports');
+});
+Route::get('/paypal_error', function () {
+    return redirect()->back()->with('errormsg', 'Issue recieved from paypal');
+});
+
 // User routes //
 // ----------- //
 Route::get('/', 'HomeController@index')->name('Welcome');
