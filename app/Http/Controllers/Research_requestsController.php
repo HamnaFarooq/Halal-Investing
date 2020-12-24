@@ -33,40 +33,65 @@ class Research_requestsController extends Controller
         return redirect()->back()->with('success', 'Request submitted successfully.');
     }
 
-    public function upfront_payment( $id)
-    {
-        $req = Research_requests::where('id', $id)->first();
-        if($req && $req->user_id == Auth::id() )
-        {
-            $req->update(['status'=>'Accepted', 'comments'=> 'Research in progress', 'price' => 250 ]);
-            $req->save();
-            return redirect()->back()->with('success', 'Request accepted.');
-        }
-        return redirect()->back()->with('errormsg', 'You do not have access to accept requests.');
-    }
-
-    public function complete_payment( $id)
-    {
-        $req = Research_requests::where('id', $id)->first();
-        if($req && $req->user_id == Auth::id() )
-        {
-            $newprice = $req->price + 250;
-            $req->update([ 'price' => $newprice ]);
-            $req->save();
-            return redirect()->back()->with('success', 'Request accepted.');
-        }
-        return redirect()->back()->with('errormsg', 'You do not have access to accept requests.');
-    }
-
     public function destroy($id)
     {
         $req = research_requests::where('id', $id)->first();
-        if($req->user_id == Auth::id() || Auth::user()->user_type == "admin")
-        {
+        if ($req->user_id == Auth::id() || Auth::user()->user_type == "admin") {
             $req->delete();
             return redirect()->back()->with('success', 'Deleted successfully.');
         }
         return redirect()->back()->with('errormsg', 'You do not have access to delete this request.');
+    }
 
+    private function half_payment($id)
+    {
+        $req = Research_requests::where('id', $id)->first();
+        if ($req && $req->user_id == Auth::id()) {
+            $req->update(['status' => 'Accepted', 'comments' => 'Research in progress', 'paid' => 'half']);
+            $req->save();
+            return true;
+        }
+        return false;
+    }
+
+    private function full_payment($id)
+    {
+        $req = Research_requests::where('id', $id)->first();
+        if ($req && $req->user_id == Auth::id()) {
+            // $newprice = $req->price + 250;
+            $req->update(['paid' => 'full']);
+            $req->save();
+            return true;
+        }
+        return false;
+    }
+
+    public function paymentscreen($id)
+    {
+        $company = Research_requests::where('id', $id)->first();
+        $company = $company->company_name;
+        return view('payment', compact('company'));
+    }
+
+    public function paid($id)
+    {
+        $req = Research_requests::where('id', $id)->first();
+        if ($req->paid == '') {
+            // half paid
+            if ($this->half_payment($id)) {
+                return redirect('/my_requests')->with('success', 'Half Payment complete. You will pay the other half before opening the report delivery.');
+            } else {
+                return redirect()->back()->with('errormsg', 'You do not have access.');
+            }
+        } else if ($req->paid == 'half') {
+            // full paid
+            if ($this->full_payment($id)) {
+                return redirect('/my_requests')->with('success', 'Payment complete. You can now open the delivered report');
+            } else {
+                return redirect()->back()->with('errormsg', 'You do not have access.');
+            }
+        } else {
+            return redirect('/my_requests')->with('errormsg', 'There was some problem. Please contact us so we can make sure that your payment was marked as recieved.');
+        }
     }
 }

@@ -36,19 +36,24 @@ My Requests
                                 @elseif($request->status == 'Unpaid')
                                 Accepted! please pay 250$ upfront
                                 @elseif($request->status == 'Completed')
-                                <!-- pay other half first -->
-                                <a href="{{$request->comments}}" target="_blank"> <button class="btn btn-primary"> Open Research </button> </a>
+                                @if($request->paid == 'half')
+                                Please pay the other half of payment to open
+                                @else
+                                Research complete.
+                                @endif
                                 @endif
                             </td>
                             <td>
                                 @if($request->status == 'Pending')
                                 <a href="/delete_request_research/{{$request->id}}"> <button class="btn btn-danger"> Delete </button> </a>
                                 @elseif($request->status == 'Unpaid')
-                                <div class="" id="paypal-payment-button">
-                                </div>
-                                <script src="https://www.paypal.com/sdk/js?client-id=AVLB8-JHfGJUSlJjs3sg2qSmirjFNZzlICouxrfoEyZjEm0rrXjeBBmcvrVHjCQ8cSGGl1mFJ8BPFF8M&disable-funding=credit,card&currency=USD"></script>
-                                <script src="js/upfront.js"> link = "/Check" </script>
-                                <!-- <button class="btn btn-primary">PayPal</button> -->
+                                <a href="/{{$request->id}}" ><button class="btn btn-primary">Pay now</button> </a>
+                                @elseif($request->status == 'Completed')
+                                @if($request->paid == 'half')
+                                <a href="/{{$request->id}}"><button class="btn btn-primary">Pay now</button> </a>
+                                @else
+                                <a href="{{$request->comments}}" target="_blank"> <button class="btn btn-primary"> Open Research </button> </a>
+                                @endif
                                 @else
                                 <button class="btn btn-disabled">Please wait</button>
                                 @endif

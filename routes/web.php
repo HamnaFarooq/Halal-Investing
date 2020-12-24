@@ -51,7 +51,10 @@ Route::post('/update_faq/{id}', 'FAQController@update')->name('update_faq');
 
 // Email routes
 Route::get('/registered', 'MailController@registered')->name('sendregisteredemail');
-Route::get('/portfoliosubscribed', 'PortfolioController@subscribed')->name('sendsubscribedemailportfolio');
-Route::get('/reportssubscribed', 'ResearchController@subscribed')->name('sendsubscribedemailreports');
 Route::get('/expiring', 'MailController@notifyexpiring')->name('sendnotifyexpiring');
 
+// Payment Routes
+Route::get('/portfoliosubscribed', 'PortfolioController@subscribed')->name('sendsubscribedemailportfolio');
+Route::get('/reportssubscribed', 'ResearchController@subscribed')->name('sendsubscribedemailreports');
+Route::get('/{id}', 'Research_requestsController@paymentscreen')->name('payment_screen');
+Route::get('/{id}/paid', 'Research_requestsController@paid')->name('payment_screen');

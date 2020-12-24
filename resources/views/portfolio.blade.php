@@ -122,7 +122,6 @@ Our Portfolio
                 </div>
                 <script src="https://www.paypal.com/sdk/js?client-id=AVLB8-JHfGJUSlJjs3sg2qSmirjFNZzlICouxrfoEyZjEm0rrXjeBBmcvrVHjCQ8cSGGl1mFJ8BPFF8M&disable-funding=credit,card&currency=USD"></script>
                 <script src="js/portfolio.js"></script>
-                <!-- <a href="/portfoliosubscribed"></a> -->
             </div>
             <h5 class="text-center">Please register to our portfolio services to view Portfolio for 1 year</h5>
         </div>

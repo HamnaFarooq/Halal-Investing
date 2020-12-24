@@ -22,6 +22,7 @@ class CreateResearchRequests extends Migration
             $table->longText('request')->nullable();
             $table->string('status');
             $table->double('price')->nullable();
+            $table->string('paid')->nullable();
             $table->Text('comments')->nullable();
             $table->timestamps();
         });

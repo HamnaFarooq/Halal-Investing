@@ -94,7 +94,7 @@ class researchController extends Controller
             $usr->update(['reports' => 'subscribed', 'reports_starts_at' => today(), 'reports_ends_at' => today()->addDays(365)]);
         }
         $usr->save();
-        app('App\Http\Controllers\MailController')->reports_subscribed($usr->portfolio_ends_at);
+        app('App\Http\Controllers\MailController')->reports_subscribed($usr->reports_ends_at);
         return redirect('/research_reports')->with('success', 'Thank you for Subscribing to Our Research Reports');
     }
 }
